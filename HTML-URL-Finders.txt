@@ -1,0 +1,36 @@
+Protocol, host and path separate (Port as part of host)
+href=[\'|\"]((?:https?|telnet|ldaps?|ftps?)\:\/\/)([\w|\d|\.|\:]+)(\/?.*)[\'|\"]
+
+Protocol, host, port, path separate
+href=[\'|\"]((?:https?|telnet|ldaps?|ftps?)\:\/\/)([\w|\d|\.]+)\:?(\d{0,5})(\/?.*)[\'|\"]
+
+Path Only Match (Relative links)
+href=[\'|\"](?:(?!https?|telnet|ldaps?|ftps?))(\/?[\w|\d|\.]+)[\'|\"]
+
+
+Notes:
+Removing the href=[\'|\"] from the front of the string and [\'|\"] from the end will allow for URL matching in non HTML text files. The intent of these strings s for use in a tool like a web spider.
+
+Sample 'URIs'
+
+href="http://www.ddd.cos"
+href='https://asd.cds/asdlkaskldjalk/asda.php'
+href="ftp://fslkj.adsf.adfaa.net/asdfas.php?ind=AAAA"
+href='ftps://fslkj.adsf.adfaa.net/asdfas.php?ind=AAAA'
+href='http://192.0.2.16:8080/test.login.login.php'
+href='https://192.0.2.16:2231/'
+href='http://mail.google.com:80/profile/text.aspx'
+href='/mail.php'
+href="calway.html"
+href=''
+href=""
+href="ftp://ftp.is.co.za/rfc/rfc1808.txt"
+href='http://www.ietf.org/rfc/rfc2396.txt'
+href="ldap://[2001:db8::7]/c=GB?objectClass?one"
+href="ldap://example.com/c=GB?objectClass?one"
+href="ldaps://example.com/c=GB?objectClass?one"
+href="mailto:John.Doe@example.com"
+href='news:comp.infosystems.www.servers.unix'
+href="tel:+1-816-555-1212"
+href='telnet://192.0.2.16:80/'
+href="urn:oasis:names:specification:docbook:dtd:xml:4.1.2"
