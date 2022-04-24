@@ -1,15 +1,26 @@
 Protocol, host and path separate (Port as part of host)
-href=[\'|\"]((?:https?|telnet|ldaps?|ftps?)\:\/\/)([\w|\d|\.|\:]+)(\/?.*)[\'|\"]
+[\'\"]((?:https?|telnet|ldaps?|ftps?)\:\/\/)([\w|\d|\.|\:]+)(\/?.*?)[\'\"]
 
 Protocol, host, port, path separate
-href=[\'|\"]((?:https?|telnet|ldaps?|ftps?)\:\/\/)([\w|\d|\.]+)\:?(\d{0,5})(\/?.*)[\'|\"]
+[\'\"]((?:https?|telnet|ldaps?|ftps?)\:\/\/)([\w|\d|\.]+)\:?(\d{0,5})(\/?.*?)[\'\"]
 
 Path Only Match (Relative links)
-href=[\'|\"](?:(?!https?|telnet|ldaps?|ftps?))(\/?[\w|\d|\.]+)[\'|\"]
+[\'\"](?:(?!https?|telnet|ldaps?|ftps?))(\/?[\w|\d|\.]+)[\'\"]
 
+Group Base URL Only (ex. http://www.google.com)
+[\'\"]((?:https?|telnet|ldaps?|ftps?)\:\/\/[\w|\d|\.|\:]+)\/?.*?[\'\"]
+
+Full link single match group (ex. http://google.com:2030/path/morepath?=paramater)
+[\'\"]((?:https?|telnet|ldaps?|ftps?)\:\/\/[\w|\d|\.|\:]+\/?.*?)[\'\"]
+
+Full link single match group, no URL parameters
+[\'\"]((?:https?|telnet|ldaps?|ftps?)\:\/\/[\w|\d|\.|\:]+\/?.*?)(?:\?.*?)?[\'\"]
+
+Capture improperly formatted links (No Quotes enclosing link in html)
+[\'\"\s]?((?:https?|telnet|ldaps?|ftps?)\:\/\/[\w|\d|\.|\:]+\/?.*?)(?:\?.*?)?[\'\"\s\>]
 
 Notes:
-Removing the href=[\'|\"] from the front of the string and [\'|\"] from the end will allow for URL matching in non HTML text files. The intent of these strings s for use in a tool like a web spider.
+Removing the [\'\"] from the front and end of the string will allow for URL matching in non HTML text files. The intent of these strings s for use in a tool like a web spider.
 
 Sample 'URIs'
 
@@ -34,3 +45,15 @@ href='news:comp.infosystems.www.servers.unix'
 href="tel:+1-816-555-1212"
 href='telnet://192.0.2.16:80/'
 href="urn:oasis:names:specification:docbook:dtd:xml:4.1.2"
+
+# with URL parameters
+href="https://www.amazon.com/Casio-Mens-CA53W-1-Calculator-Watch/dp/B000GB1R7S/?_encoding=UTF8&ref_=pd_gw_ci_mcx_mi"
+
+# improperly stored URL (no quotes)
+href=www.google.com/pathtest/document.html
+
+# URL in a Comment (Hidden for bot detection?)
+# Might need to match over a single line or multiple lines
+<!-- Comments or other content href="http://www.ddd.cos" --> 
+<!-- Comments or other content href="http://www.ddd.cos" 
+comment continues here and was not closed on the previous line--> 
