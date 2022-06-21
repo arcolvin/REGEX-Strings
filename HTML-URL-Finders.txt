@@ -1,3 +1,5 @@
+Test Strings:
+
 Protocol, host and path separate (Port as part of host)
 [\'\"]((?:https?|telnet|ldaps?|ftps?)\:\/\/)([\w|\d|\.|\:]+)(\/?.*?)[\'\"]
 
@@ -22,7 +24,7 @@ Capture improperly formatted links (No Quotes enclosing link in html)
 Notes:
 Removing the [\'\"] from the front and end of the string will allow for URL matching in non HTML text files. The intent of these strings s for use in a tool like a web spider.
 
-Sample 'URIs'
+Sample Data:
 
 href="http://www.ddd.cos"
 href='https://asd.cds/asdlkaskldjalk/asda.php'
