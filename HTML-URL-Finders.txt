@@ -1,25 +1,25 @@
 Test Strings:
 
 Protocol, host and path separate (Port as part of host)
-[\'\"]((?:https?|telnet|ldaps?|ftps?)\:\/\/)([\w|\d|\.|\:]+)(\/?.*?)[\'\"]
+[\'\"]((?:https?|telnet|ldaps?|ftps?)\:\/\/)([\w|\d|\.|\:|-]+)(\/?.*?)[\'\"]
 
 Protocol, host, port, path separate
-[\'\"]((?:https?|telnet|ldaps?|ftps?)\:\/\/)([\w|\d|\.]+)\:?(\d{0,5})(\/?.*?)[\'\"]
+[\'\"]((?:https?|telnet|ldaps?|ftps?)\:\/\/)([\w|\d|\.|-]+)\:?(\d{0,5})(\/?.*?)[\'\"]
 
 Path Only Match (Relative links)
-[\'\"](?:(?!https?|telnet|ldaps?|ftps?))(\/?[\w|\d|\.]+)[\'\"]
+[\'\"](?:(?!https?|telnet|ldaps?|ftps?))(\/?[\w|\d|\.|-]+)[\'\"]
 
 Group Base URL Only (ex. http://www.google.com)
-[\'\"]((?:https?|telnet|ldaps?|ftps?)\:\/\/[\w|\d|\.|\:]+)\/?.*?[\'\"]
+[\'\"]((?:https?|telnet|ldaps?|ftps?)\:\/\/[\w|\d|\.|\:|-]+)\/?.*?[\'\"]
 
 Full link single match group (ex. http://google.com:2030/path/morepath?=paramater)
-[\'\"]((?:https?|telnet|ldaps?|ftps?)\:\/\/[\w|\d|\.|\:]+\/?.*?)[\'\"]
+[\'\"]((?:https?|telnet|ldaps?|ftps?)\:\/\/[\w|\d|\.|\:|-]+\/?.*?)[\'\"]
 
 Full link single match group, no URL parameters
-[\'\"]((?:https?|telnet|ldaps?|ftps?)\:\/\/[\w|\d|\.|\:]+\/?.*?)(?:\?.*?)?[\'\"]
+[\'\"]((?:https?|telnet|ldaps?|ftps?)\:\/\/[\w|\d|\.|\:|-]+\/?.*?)(?:\?.*?)?[\'\"]
 
 Capture improperly formatted links (No Quotes enclosing link in html)
-[\'\"\s]?((?:https?|telnet|ldaps?|ftps?)\:\/\/[\w|\d|\.|\:]+\/?.*?)(?:\?.*?)?[\'\"\s\>]
+[\'\"\s]?((?:https?|telnet|ldaps?|ftps?)\:\/\/[\w|\d|\.|\:|-]+\/?.*?)(?:\?.*?)?[\'\"\s\>]
 
 Notes:
 Removing the [\'\"] from the front and end of the string will allow for URL matching in non HTML text files. The intent of these strings s for use in a tool like a web spider.
@@ -33,6 +33,7 @@ href='ftps://fslkj.adsf.adfaa.net/asdfas.php?ind=AAAA'
 href='http://192.0.2.16:8080/test.login.login.php'
 href='https://192.0.2.16:2231/'
 href='http://mail.google.com:80/profile/text.aspx'
+href="https://fr-be.yahoo.com"
 href='/mail.php'
 href="calway.html"
 href=''

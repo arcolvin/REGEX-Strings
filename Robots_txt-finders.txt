@@ -1,4 +1,39 @@
 Test Strings:
-
+https://google\.com/books\?.*zoom=5.*
+https://google\.com/books\?.*zoom=.*
 
 Sample Data:
+Disallow: /books?*zoom=*
+Allow: /books?*zoom=1*
+Allow: /books?*zoom=5*
+
+https://google.com/books?*zoom=1*
+https://google.com/books?*zoom=5*
+https://google.com/books?asdzoom=1adssd
+https://google.com/books?123zoom=5123
+https://google.com/books?kljasdhbf7823zoom=1afshkjl982
+https://google.com/books?)(*#$&@!zoom=5LASKJDH123$@!
+https://google.com/books?al;ksdjf()*&zoom=112340987jlhk
+https://google.com/books?jadsjkdasjhkadshjkadjhkzoom=51290837uih
+
+
+This becomes more a matter of processing the robots.txt
+In python first check for any REGEX Literals
+
+mkReg = lambda x: x.replace('.', '\.')\
+    .replace('?', '\?')\
+    .replace('+', '\+')\
+    .replace('$', '\$')\
+    .replace('^', '\^')\
+    .replace('&', '\&')\
+    .replace('-', '\-')\
+    .replace('|', '\|')\
+    .replace('(', '\(')\
+    .replace(')', '\)')\
+    .replace('[', '\[')\
+    .replace(']', '\]')\
+    .replace('*', '.*')     # Allows for wildcard matching
+
+Then take resultant string and compile it for the re module
+
+re.compile(mkReg)
